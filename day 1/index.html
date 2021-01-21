@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>day1</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	
+
+	<div class="cen">
+		<div data-key="65" class="el1 el"><p>A</p></div>
+		<div data-key="83" class="el2 el">S</div>
+		<div data-key="68" class="el3 el">D</div>
+		<div data-key="70" class="el4 el">F</div>
+		<div data-key="74" class="el5 el">J</div>
+		<div data-key="75" class="el6 el">K</div>
+		<div data-key="76" class="el7 el">L</div>
+		<div data-key="77" class="el8 el">M</div>
+		
+	</div>
+
+
+	<audio data-key="65" src="sounds/clay.mp3"></audio>
+	<audio data-key="83" src="sounds/flash-1.mp3"></audio>
+	<audio data-key="68" src="sounds/flash-2.mp3"></audio>
+	<audio data-key="70" src="sounds/flash-3.mp3"></audio>
+	<audio data-key="74" src="sounds/piston-1.mp3"></audio>
+	<audio data-key="75" src="sounds/piston-2.mp3"></audio>
+	<audio data-key="76" src="sounds/prism-1.mp3"></audio>
+	<audio data-key="77" src="sounds/prism-2.mp3"></audio>
+
+
+	<script>
+		window.addEventListener('keydown',function(e){
+			const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+			const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+			if(!key) return;
+			if(!audio) return ;
+			
+			// console.log(key);
+			key.classList.add("playing");
+
+			audio.currentTime=0;
+			audio.play();
+
+		})
+		function removeTransition(e){
+			
+			if(e.propertyName !== 'transform') return;
+			
+			this.classList.remove('playing');
+		}
+
+		const keys = Array.from(document.querySelectorAll('.el'));
+		keys.forEach(key => {
+			return key.addEventListener('transitionend',removeTransition);
+		})
+		console.log(keys);
+		
+	</script>
+	<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+body{
+	background-image: linear-gradient(rgba(0,0,0,.5),red), url("shuvasish.png");
+	background-position: top;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
+}
+.cen{
+	width: 1000px;
+	/*background: red;*/
+	margin: 180px auto;
+	display: flex;
+	justify-content: space-around;
+}
+div{
+	font-weight: bold;
+
+}
+.el{
+	
+	padding: 30px 40px;
+	border: 2px solid black;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	transition: all .07s;
+}
+.playing{
+	/*background: green;*/
+	background-image: linear-gradient(white,yellow);
+	color: black;
+	outline-offset: 10px;
+	outline: 10px solid yellow;
+
+	/*-webkit-background-clip: text;*/
+	/*color: transparent;*/
+	transform: scale(1.1);
+	border-color:yellow;
+	box-shadow: 0px 0px 10px rgba(255,255,000,1);
+}
+.el:hover{
+
+}

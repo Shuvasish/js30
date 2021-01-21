@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=`, initial-scale=1.0">
+	<title>day 2</title>
+</head>
+<body>
+	<html>
+		<div class="continer">
+			<div class="clock">
+      			<div class="clock-face">
+        			<div class="hand hour-hand"></div>
+        			<div class="hand min-hand"></div>
+        			<div class="hand second-hand"></div>
+      			</div>
+      			<audio data-key="33" class="sound" src="clock.mp3"></audio>
+    		</div>
+
+			<style>
+				html{
+					background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
+					background-size: cover;
+     				font-family: 'helvetica neue';
+     				text-align: center;
+      				font-size: 10px;
+				}
+				body {
+				      margin: 0;
+				      font-size: 2rem;
+				      display: flex;
+				      flex: 1;
+				      min-height: 100vh;
+				      align-items: center;
+				      justify-content: center;
+				    }
+				    .clock {
+					      width: 30rem;
+					      height: 30rem;
+					      border: 20px solid white;
+					      border-radius: 50%;
+					      margin: 50px auto;
+					      position: relative;
+					      padding: 2rem;
+					      box-shadow:
+					        0 0 0 4px rgba(0,0,0,0.1),
+					        inset 0 0 0 3px #EFEFEF,
+					        inset 0 0 10px black,
+					        0 0 10px rgba(0,0,0,0.2);
+					    }
+				    .clock-face {
+						      position: relative;
+						      width: 100%;
+						      height: 100%;
+						      transform: translateY(-3px); /* account for the height of the clock hands */
+						    }
+				    .hand {
+				      width: 50%;
+				      height: 6px;
+				      background: black;
+				      /*background-image: linear-gradient(yellow,red);*/
+				      position: absolute;
+				      top: 50%;
+				      transform: rotate(90deg);
+				      transform-origin: 100%;
+				      /*transition: all .05s; */
+				      transition-timing-function: cubic-bezier(.1,2.7,0.58,1);
+				    }
+				    </style>
+
+				    <script>
+				    	const secondHand = document.querySelector('.second-hand');
+				    	const minuteHand = document.querySelector('.min-hand');
+				    	const hourHand = document.querySelector('.hour-hand');
+				    	function setDate(){
+				    		const now = new Date();
+				    		const seconds = now.getSeconds();
+				    		const minutes = now.getMinutes();
+				    		const hours = now.getHours();
+				    		const secondDegrees = ((seconds/60)*360)+90;
+				    		const minuteDegrees = ((minutes/60)*360)+90;
+				    		const hourDegerees = ((hours/12)*360)+90;
+				    		const audio = document.querySelector(`audio[data-key="33"]`);
+								audio.currentTime=0;
+								audio.play();
+				    		if(secondDegrees===59 || secondDegrees===60 ||secondDegrees===0){
+				    			secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+				    			secondHand.style.transition = 'none';
+				    		}else{
+				    			secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+				    		}
+				    		
+				    		minuteHand.style.transform = `rotate(${minuteDegrees}deg)`;
+				    		hourHand.style.transform = `rotate(${hourDegerees}deg)`;
+				   		 }
+				   		 setInterval(setDate,1000);
+				    </script>
+				<!-- <script >
+					const clock = function(){
+						setInterval(function(){
+							const time = new Date();
+							const hour=Math.abs(time.getHours()-12);
+							const min = time.getMinutes();
+							const sec = time.getSeconds();
+							const audio = document.querySelector(`audio[data-key="33"]`);
+								audio.currentTime=0;
+								audio.play();
+							// console.log(`${hour}:${min}:${sec}`);
+							document.querySelector('.hour-hand').style.rotate = `${hour*30}deg`;
+							document.querySelector('.min-hand').style.rotate = `${min*6}deg`;
+							document.querySelector('.second-hand').style.rotate = `${sec*6}deg`;
+
+						},1000)
+					}
+					clock();
+
+					
+					
+				</script> -->
+				
+			
+		</div>
+	</html>
+</body>
+</html>
